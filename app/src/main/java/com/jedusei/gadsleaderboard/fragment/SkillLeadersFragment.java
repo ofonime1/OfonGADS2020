@@ -7,6 +7,7 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -48,6 +49,16 @@ public class SkillLeadersFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view= inflater.inflate(R.layout.fragment_skill_leaders, container, false);
+
+        final SwipeRefreshLayout swipeRefreshLayout = view.findViewById(R.id.swipe_refresh);
+        swipeRefreshLayout.setRefreshing(true);
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                viewModel.refreshList();
+            }
+        });
+
         RecyclerView recyclerView = view.findViewById(R.id.recycler_view);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         final SkillLeadersRvAdapter adapter = new SkillLeadersRvAdapter(getContext());
@@ -57,6 +68,7 @@ public class SkillLeadersFragment extends Fragment {
                     @Override
                     public void onChanged(List<SkillLeader> skillLeaders) {
                         adapter.setItems(skillLeaders);
+                        swipeRefreshLayout.setRefreshing(false);
                     }
                 });
 
