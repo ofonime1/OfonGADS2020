@@ -5,4 +5,5 @@
     <string name="learning_leaders">Learning Leaders</string>
     <string name="learning_badge">Learning Badge</string>
     <string name="learning_leader_details">%1$d learning hours, %2$s.</string>
+    <string name="skill_leader_details">%1$d skill IQ Score, %2$s.</string>
 </resources>
