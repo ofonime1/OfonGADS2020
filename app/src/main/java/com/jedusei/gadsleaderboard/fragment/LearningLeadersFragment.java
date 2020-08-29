@@ -2,6 +2,7 @@ package com.jedusei.gadsleaderboard.fragment;
 
 import android.os.Bundle;
 
+import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
@@ -9,9 +10,11 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.jedusei.gadsleaderboard.R;
 import com.jedusei.gadsleaderboard.adapter.LearningLeadersRvAdapter;
@@ -28,6 +31,7 @@ import java.util.List;
 public class LearningLeadersFragment extends Fragment {
 
     private LearningLeadersViewModel viewModel;
+    private DialogFragment errorDialogFragment;
 
     public LearningLeadersFragment() {
         // Required empty public constructor
@@ -42,6 +46,7 @@ public class LearningLeadersFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         viewModel = new ViewModelProvider(this).get(LearningLeadersViewModel.class);
+        errorDialogFragment = OkDialogFragment.newInstance(getString(R.string.network_error));
     }
 
     @Override
@@ -73,10 +78,26 @@ public class LearningLeadersFragment extends Fragment {
                         if (learningLeaders.size() > 0) {
                             recyclerView.setVisibility(View.VISIBLE);
                             emptyView.setVisibility(View.GONE);
-                        }
-                        else {
+                        } else {
                             recyclerView.setVisibility(View.GONE);
                             emptyView.setVisibility(View.VISIBLE);
+                        }
+                    }
+                });
+        viewModel.getError()
+                .observe(this, new Observer<Boolean>() {
+                    @Override
+                    public void onChanged(Boolean error) {
+                        if (error) {
+                            swipeRefreshLayout.setRefreshing(false);
+                            if (adapter.getItemCount() > 0) {
+                                Toast.makeText(getContext(), getString(R.string.network_error), Toast.LENGTH_SHORT)
+                                        .show();
+                            } else {
+                                recyclerView.setVisibility(View.GONE);
+                                emptyView.setVisibility(View.VISIBLE);
+                                errorDialogFragment.show(getFragmentManager(), "LearningLeadersFragment_OkDialog");
+                            }
                         }
                     }
                 });
