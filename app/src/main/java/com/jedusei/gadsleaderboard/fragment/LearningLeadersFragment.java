@@ -49,6 +49,7 @@ public class LearningLeadersFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_learning_leaders, container, false);
+        final View emptyView = view.findViewById(R.id.emptyView);
 
         final SwipeRefreshLayout swipeRefreshLayout = view.findViewById(R.id.swipe_refresh);
         swipeRefreshLayout.setRefreshing(true);
@@ -59,7 +60,7 @@ public class LearningLeadersFragment extends Fragment {
             }
         });
 
-        RecyclerView recyclerView = view.findViewById(R.id.recycler_view);
+        final RecyclerView recyclerView = view.findViewById(R.id.recycler_view);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         final LearningLeadersRvAdapter adapter = new LearningLeadersRvAdapter(getContext());
         recyclerView.setAdapter(adapter);
@@ -69,6 +70,14 @@ public class LearningLeadersFragment extends Fragment {
                     public void onChanged(List<LearningLeader> learningLeaders) {
                         adapter.setItems(learningLeaders);
                         swipeRefreshLayout.setRefreshing(false);
+                        if (learningLeaders.size() > 0) {
+                            recyclerView.setVisibility(View.VISIBLE);
+                            emptyView.setVisibility(View.GONE);
+                        }
+                        else {
+                            recyclerView.setVisibility(View.GONE);
+                            emptyView.setVisibility(View.VISIBLE);
+                        }
                     }
                 });
 

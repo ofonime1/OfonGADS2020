@@ -6,7 +6,6 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-import com.jedusei.gadsleaderboard.model.LearningLeader;
 import com.jedusei.gadsleaderboard.model.SkillLeader;
 
 import java.util.Arrays;
@@ -28,7 +27,7 @@ public class SkillLeadersViewModel extends ViewModel {
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
-                skillLeaders.postValue(Arrays.asList(
+                skillLeaders.setValue(Arrays.asList(
                         new SkillLeader("Perry Oluwatobi", "Nigeria", 300),
                         new SkillLeader("Perry Oluwatobi", "Nigeria", 214),
                         new SkillLeader("Perry Oluwatobi", "Nigeria", 207)

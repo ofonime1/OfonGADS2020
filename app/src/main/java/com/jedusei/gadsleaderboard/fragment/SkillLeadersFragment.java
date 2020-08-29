@@ -28,7 +28,7 @@ import java.util.List;
 public class SkillLeadersFragment extends Fragment {
 
     private SkillLeadersViewModel viewModel;
-    
+
     public SkillLeadersFragment() {
         // Required empty public constructor
     }
@@ -48,7 +48,8 @@ public class SkillLeadersFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view= inflater.inflate(R.layout.fragment_skill_leaders, container, false);
+        View view = inflater.inflate(R.layout.fragment_skill_leaders, container, false);
+        final View emptyView = view.findViewById(R.id.emptyView);
 
         final SwipeRefreshLayout swipeRefreshLayout = view.findViewById(R.id.swipe_refresh);
         swipeRefreshLayout.setRefreshing(true);
@@ -59,7 +60,7 @@ public class SkillLeadersFragment extends Fragment {
             }
         });
 
-        RecyclerView recyclerView = view.findViewById(R.id.recycler_view);
+        final RecyclerView recyclerView = view.findViewById(R.id.recycler_view);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         final SkillLeadersRvAdapter adapter = new SkillLeadersRvAdapter(getContext());
         recyclerView.setAdapter(adapter);
@@ -69,6 +70,13 @@ public class SkillLeadersFragment extends Fragment {
                     public void onChanged(List<SkillLeader> skillLeaders) {
                         adapter.setItems(skillLeaders);
                         swipeRefreshLayout.setRefreshing(false);
+                        if (skillLeaders.size() > 0) {
+                            recyclerView.setVisibility(View.VISIBLE);
+                            emptyView.setVisibility(View.GONE);
+                        } else {
+                            recyclerView.setVisibility(View.GONE);
+                            emptyView.setVisibility(View.VISIBLE);
+                        }
                     }
                 });
 
