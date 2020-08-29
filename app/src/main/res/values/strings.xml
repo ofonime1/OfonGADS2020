@@ -3,4 +3,6 @@
     <string name="leaderboard">LEADERBOARD</string>
     <string name="skill_iq_leaders">Skill IQ Leaders</string>
     <string name="learning_leaders">Learning Leaders</string>
+    <string name="learning_badge">Learning Badge</string>
+    <string name="learning_leader_details">%1$d learning hours, %2$s.</string>
 </resources>
