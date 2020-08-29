@@ -17,4 +17,19 @@
     <style name="TabTextAppearance" parent="@android:style/TextAppearance.Widget.TabWidget">
         <item name="android:textSize">20sp</item>
     </style>
+
+    <style name="SubmitActivityTheme" parent="Theme.AppCompat.Light">
+        <item name="editTextStyle">@style/SubmitActivityEditTextStyle</item>
+    </style>
+
+    <style name="SubmitActivityEditTextStyle" parent="@style/Widget.AppCompat.EditText">
+        <item name="android:background">@drawable/bg_edit_text</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColorHint">#717171</item>
+        <item name="android:textColor">@android:color/black</item>
+        <item name="android:paddingTop">15dp</item>
+        <item name="android:paddingBottom">15dp</item>
+        <item name="android:paddingStart">10dp</item>
+        <item name="android:paddingEnd">10dp</item>
+    </style>
 </resources>
