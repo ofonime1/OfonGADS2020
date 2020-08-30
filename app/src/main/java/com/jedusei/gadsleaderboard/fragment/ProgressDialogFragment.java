@@ -16,14 +16,15 @@ public class ProgressDialogFragment extends DialogFragment {
     private static final String ARG_MESSAGE = "message";
 
     public ProgressDialogFragment() {
+        Bundle defaultArgs = new Bundle();
+        defaultArgs.putString(ARG_MESSAGE, "");
+        setArguments(defaultArgs);
         setCancelable(false);
     }
 
     public static ProgressDialogFragment newInstance(String message) {
         ProgressDialogFragment dialog = new ProgressDialogFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_MESSAGE, message);
-        dialog.setArguments(args);
+        dialog.getArguments().putString(ARG_MESSAGE, message);
         return dialog;
     }
 

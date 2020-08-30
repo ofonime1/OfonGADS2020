@@ -8,6 +8,7 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.coordinatorlayout.widget.DirectedAcyclicGraph;
 import androidx.fragment.app.DialogFragment;
 
 import com.jedusei.gadsleaderboard.R;
@@ -17,13 +18,14 @@ public class ConfirmDialogFragment extends DialogFragment {
     public static final int RESULT_OK = 1;
 
     public ConfirmDialogFragment() {
+        Bundle defaultArgs = new Bundle();
+        defaultArgs.putString(ARG_MESSAGE, "");
+        setArguments(defaultArgs);
     }
 
     public static ConfirmDialogFragment newInstance(String message) {
         ConfirmDialogFragment dialog = new ConfirmDialogFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_MESSAGE, message);
-        dialog.setArguments(args);
+        dialog.getArguments().putString(ARG_MESSAGE, message);
         return dialog;
     }
 

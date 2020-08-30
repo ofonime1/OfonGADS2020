@@ -1,7 +1,5 @@
 package com.jedusei.gadsleaderboard.fragment;
 
-import android.content.Context;
-import android.content.res.Resources;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,8 +8,6 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.core.content.ContextCompat;
-import androidx.core.content.res.ResourcesCompat;
 import androidx.fragment.app.DialogFragment;
 
 import com.jedusei.gadsleaderboard.R;
@@ -34,10 +30,10 @@ public class SubmitResultDialogFragment extends DialogFragment {
         TextView view = (TextView) inflater.inflate(R.layout.dialog_submit_result, container, false);
         if (success) {
             view.setText(R.string.submission_successful);
-            view.setCompoundDrawablesWithIntrinsicBounds(0,   R.drawable.ic_check_circle , 0, 0);
+            view.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.ic_check_circle, 0, 0);
         } else {
             view.setText(R.string.submission_not_successful);
-            view.setCompoundDrawablesWithIntrinsicBounds(0,   R.drawable.ic_error , 0, 0);
+            view.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.ic_error, 0, 0);
         }
         return view;
     }
@@ -52,10 +48,10 @@ public class SubmitResultDialogFragment extends DialogFragment {
         if (view != null) {
             if (success) {
                 view.setText(R.string.submission_successful);
-                view.setCompoundDrawablesWithIntrinsicBounds(0,   R.drawable.ic_check_circle , 0, 0);
+                view.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.ic_check_circle, 0, 0);
             } else {
                 view.setText(R.string.submission_not_successful);
-                view.setCompoundDrawablesWithIntrinsicBounds(0,   R.drawable.ic_error , 0, 0);
+                view.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.ic_error, 0, 0);
             }
         }
     }
