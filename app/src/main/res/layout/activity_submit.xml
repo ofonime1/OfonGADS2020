@@ -6,7 +6,6 @@
     android:layout_height="match_parent"
     android:background="@android:color/black"
     android:orientation="vertical"
-    android:theme="@style/SubmitActivityTheme"
     tools:context=".SubmitActivity">
 
     <LinearLayout
@@ -25,6 +24,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/bg_back"
+            android:contentDescription="@string/back"
             android:padding="10dp"
             android:src="@drawable/ic_arrow_back"
             android:tint="@android:color/white" />
@@ -34,6 +34,7 @@
             android:layout_height="40dp"
             android:layout_marginEnd="44dp"
             android:layout_weight="1"
+            android:contentDescription="@string/logo"
             app:srcCompat="@drawable/gads_logo" />
     </LinearLayout>
 
@@ -60,16 +61,17 @@
         android:orientation="horizontal"
         android:paddingStart="10dp"
         android:paddingTop="60dp"
-        android:paddingEnd="10dp"
-        android:theme="@style/SubmitActivityTheme">
+        android:paddingEnd="10dp" >
 
         <EditText
             android:id="@+id/txtFirstName"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:autofillHints=""
             android:ems="10"
+            android:hint="@string/first_name"
             android:inputType="textPersonName"
-            android:hint="First Name"
+            android:nextFocusDown="@id/txtLastName"
             app:layout_constraintEnd_toStartOf="@+id/txtLastName"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
@@ -82,11 +84,12 @@
             android:layout_marginStart="8dp"
             android:ems="10"
             android:inputType="textPersonName"
-            android:hint="Last Name"
+            android:hint="@string/last_name"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/txtFirstName"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            android:autofillHints="" />
 
         <EditText
             android:id="@+id/txtEmail"
@@ -96,10 +99,11 @@
             android:layout_marginTop="50dp"
             android:ems="10"
             android:inputType="textEmailAddress"
-            android:hint="Email Address"
+            android:hint="@string/email_address"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/txtFirstName" />
+            app:layout_constraintTop_toBottomOf="@+id/txtFirstName"
+            android:autofillHints="" />
 
         <EditText
             android:id="@+id/txtProjectUrl"
@@ -109,16 +113,16 @@
             android:layout_marginTop="50dp"
             android:ems="10"
             android:inputType="textUri"
-            android:hint="Project on GITHUB (link)"
+            android:hint="@string/project_on_github_link"
             app:layout_constraintTop_toBottomOf="@+id/txtEmail"
-            tools:layout_editor_absoluteX="0dp" />
+            tools:layout_editor_absoluteX="0dp"
+            android:importantForAutofill="no" />
 
         <Button
             android:id="@+id/button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginTop="50dp"
             android:background="@drawable/gradient_btn"
             android:minWidth="150dp"
             android:text="@string/submit"
