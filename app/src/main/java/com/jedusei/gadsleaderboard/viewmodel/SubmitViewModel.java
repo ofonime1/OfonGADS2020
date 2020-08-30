@@ -6,8 +6,9 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
+import com.jedusei.gadsleaderboard.api.ApiResponseCallback;
+import com.jedusei.gadsleaderboard.api.GoogleFormsApiService;
 import com.jedusei.gadsleaderboard.model.Submission;
-
 
 public class SubmitViewModel extends ViewModel {
     public static final int STATUS_NEUTRAL = 0;
@@ -21,7 +22,17 @@ public class SubmitViewModel extends ViewModel {
                 .postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                        status.setValue(STATUS_OK);
+                        GoogleFormsApiService.submitProject(submission, new ApiResponseCallback<Void>() {
+                            @Override
+                            public void onResponse(Void response) {
+                                status.postValue(STATUS_OK);
+                            }
+
+                            @Override
+                            public void onError(Throwable error) {
+                                status.postValue(STATUS_ERROR);
+                            }
+                        });
                     }
                 }, 1500);
     }
