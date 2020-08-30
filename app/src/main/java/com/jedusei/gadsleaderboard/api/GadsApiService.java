@@ -36,7 +36,10 @@ public class GadsApiService {
                 .enqueue(new Callback<List<LearningLeader>>() {
                     @Override
                     public void onResponse(Call<List<LearningLeader>> call, Response<List<LearningLeader>> response) {
-                        callback.onResponse(response.body());
+                        if (response.isSuccessful())
+                            callback.onResponse(response.body());
+                        else
+                            callback.onError(new ApiResponseError(response));
                     }
 
                     @Override
@@ -51,7 +54,10 @@ public class GadsApiService {
                 .enqueue(new Callback<List<SkillLeader>>() {
                     @Override
                     public void onResponse(Call<List<SkillLeader>> call, Response<List<SkillLeader>> response) {
-                        callback.onResponse(response.body());
+                        if (response.isSuccessful())
+                            callback.onResponse(response.body());
+                        else
+                            callback.onError(new ApiResponseError(response));
                     }
 
                     @Override
